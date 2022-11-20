@@ -50,7 +50,7 @@ provider "aws" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "terraform-remote-state-lealdiego"
+    bucket = "bucket-terraform-remote-state-lealdiego"
     key    = "aws-vpc/terraform.tfstate"
     region = "us-east-1"
   }
