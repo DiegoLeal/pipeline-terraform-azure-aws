@@ -18,7 +18,7 @@ terraform {
     resource_group_name  = "remote-state"
     storage_account_name = "lealdiegoremotestate"
     container_name       = "remote-state"
-    key                  = "pipeline-github-actions/terraform.tfstate"
+    key                  = "pipeline-gitlab-ci/terraform.tfstate"
   }
 }
 
@@ -37,7 +37,7 @@ data "terraform_remote_state" "vnet" {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 
   default_tags {
     tags = {
@@ -50,7 +50,7 @@ provider "aws" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "lealdiego-remote-state"
+    bucket = "terraform-remote-state-lealdiego"
     key    = "aws-vpc/terraform.tfstate"
     region = "us-east-1"
   }

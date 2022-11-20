@@ -1,6 +1,6 @@
 resource "aws_key_pair" "key" {
   key_name   = "aws-key"
-  public_key = var.aws_pub_key
+  public_key = file(var.aws_pub_key)
 }
 
 resource "aws_instance" "vm" {
@@ -10,7 +10,6 @@ resource "aws_instance" "vm" {
   subnet_id                   = data.terraform_remote_state.vpc.outputs.subnet_id
   vpc_security_group_ids      = [data.terraform_remote_state.vpc.outputs.security_group_id]
   associate_public_ip_address = true
-  #key_name      = var.key_name
 
   tags = {
     "Name" = "vm-terraform"
