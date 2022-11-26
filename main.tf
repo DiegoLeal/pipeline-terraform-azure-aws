@@ -18,7 +18,7 @@ terraform {
     resource_group_name  = "remote-state"
     storage_account_name = "lealdiegoremotestate"
     container_name       = "remote-state"
-    key                  = "pipeline-gitlab-ci/terraform.tfstate"
+    key                  = "pipeline-github-actions/terraform.tfstate"
   }
 }
 
@@ -37,7 +37,7 @@ data "terraform_remote_state" "vnet" {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region = "us-east-1"
 
   default_tags {
     tags = {
